@@ -10,4 +10,10 @@ class Game():
       'a2': None, 'b2': None, 'c2': None,
       'a3': None, 'b3': None, 'c3': None
     }
-    
+  def play_game(self):
+    print("Welcome to Tic-Tac-Toe!")
+
+game_instance = Game()
+
+
+game_instance.play_game()
