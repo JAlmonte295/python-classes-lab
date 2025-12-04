@@ -35,10 +35,21 @@ class Game():
   def render(self):
     self.print_board()
     self.print_message()
+
+  def get_move(self):
+    while True:
+      move = input(f"Enter a valid move (example: A1): ").lower()
+      if move in self.board and self.board[move] is None:
+        self.board[move] = self.turn
+        break
+      else:
+        print("Invalid move. Try again.")
   
 
 game_instance = Game()
 
-
 game_instance.play_game()
 game_instance.render()
+while game_instance.winner is None and not game_instance.tie:
+  game_instance.get_move()
+  game_instance.render()
