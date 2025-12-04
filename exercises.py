@@ -45,11 +45,31 @@ class Game():
       else:
         print("Invalid move. Try again.")
   
+  def check_winner(self):
+    b = self.board
+    if (b['a1'] == b['b1'] == b['c1'] != None or
+      b['a2'] == b['b2'] == b['c2'] != None or
+      b['a3'] == b['b3'] == b['c3'] != None or
+      b['a1'] == b['a2'] == b['a3'] != None or
+      b['b1'] == b['b2'] == b['b3'] != None or
+      b['c1'] == b['c2'] == b['c3'] != None or
+      b['a1'] == b['b2'] == b['c3'] != None or
+      b['a3'] == b['b2'] == b['c1'] != None):
+      self.winner = self.turn
 
+  def check_tie(self):
+    if self.winner is None and None not in self.board.values():
+      self.tie = True
+  
+
+    
 game_instance = Game()
 
 game_instance.play_game()
 game_instance.render()
 while game_instance.winner is None and not game_instance.tie:
   game_instance.get_move()
+  game_instance.check_winner()
+  game_instance.check_tie()
+  game_instance.switch_turn()
   game_instance.render()
